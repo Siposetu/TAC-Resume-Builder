@@ -1,0 +1,15 @@
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDTTdzwJm6v3ljy0q6jVHyYP4373LBXorQ",
+  authDomain: "tac-resume-builder-7fe78.firebaseapp.com",
+  projectId: "tac-resume-builder-7fe78",
+  storageBucket: "tac-resume-builder-7fe78.appspot.com",
+  messagingSenderId: "236701020653",
+  appId: "1:236701020653:web:bb08b8a5473698879877e4",
+  measurementId: "G-4T3M5ZZP9B" // Optional
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
