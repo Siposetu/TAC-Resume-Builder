@@ -136,21 +136,19 @@ function App() {
               <button
                 onClick={exportToHtml}
                 className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
-              >
-                Export HTML
-              </button>
-            </div>
-          </div>
-        </div>
+                          </div> {/* end: flex gap-4 (export buttons) */}
+          </div> {/* end: flex flex-col (AI + export section) */}
+        </div> {/* end: left panel (form section) */}
 
-        {/* Right Panel: Preview */}
         <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
           <SelectedTemplate data={resumeData} />
-        </div>
-      </div>
-    </div>
-  </div>
+        </div> {/* end: right panel (preview) */}
+        
+      </div> {/* end: grid */}
+    </div> {/* end: container */}
+  </div> {/* end: screen */}
 );
+
 
 export default App;
 
