@@ -89,68 +89,68 @@ function App() {
     saveAs(blob, 'resume.html');
   };
 
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Resume Builder</h1>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <ResumeForm 
-              data={resumeData} 
-              onChange={setResumeData}
-              onTemplateChange={setSelectedTemplate}
-              selectedTemplate={selectedTemplate}
-            />
-    <div className="mt-6 flex flex-col gap-4">
-  <button
-    onClick={async () => {
-      const prompt = `
-        Write a professional summary for a ${resumeData.fullName || 'UX Designer'} 
-        with experience in ${resumeData.skills.join(", ") || "Figma and usability testing"}.
-        Make it 3 sentences and suitable for a resume.
-      `;
-      const aiSummary = await generateResumeContent(prompt);
-      setResumeData(prev => ({ ...prev, summary: aiSummary }));
-    }}
-    className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
-  >
-    ✨ AI Generate Summary
-  </button>
+ return (
+  <div className="min-h-screen bg-gray-100">
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center mb-8">Resume Builder</h1>
 
-  <div className="flex gap-4">
-    <button
-      onClick={() => toPDF()}
-      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-    >
-      Export PDF
-    </button>
-    <button
-      onClick={exportToDocx}
-      className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-    >
-      Export DOCX
-    </button>
-    <button
-      onClick={exportToHtml}
-      className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
-    >
-      Export HTML
-    </button>
-  </div>
-</div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Panel: Form + Buttons */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <ResumeForm 
+            data={resumeData}
+            onChange={setResumeData}
+            onTemplateChange={setSelectedTemplate}
+            selectedTemplate={selectedTemplate}
+          />
 
-  );
-}
+          <div className="mt-6 flex flex-col gap-4">
+            <button
+              onClick={async () => {
+                const prompt = `
+                  Write a professional summary for a ${resumeData.fullName || 'UX Designer'} 
+                  with experience in ${resumeData.skills.join(", ") || "Figma and usability testing"}.
+                  Make it 3 sentences and suitable for a resume.
+                `;
+                const aiSummary = await generateResumeContent(prompt);
+                setResumeData(prev => ({ ...prev, summary: aiSummary }));
+              }}
+              className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+            >
+              ✨ AI Generate Summary
+            </button>
 
-          <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
-            <SelectedTemplate data={resumeData} />
+            <div className="flex gap-4">
+              <button
+                onClick={() => toPDF()}
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              >
+                Export PDF
+              </button>
+              <button
+                onClick={exportToDocx}
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+              >
+                Export DOCX
+              </button>
+              <button
+                onClick={exportToHtml}
+                className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+              >
+                Export HTML
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* Right Panel: Preview */}
+        <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
+          <SelectedTemplate data={resumeData} />
         </div>
       </div>
     </div>
-  );
-}
+  </div>
+);
 
 export default App;
 
