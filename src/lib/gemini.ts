@@ -31,3 +31,23 @@ export async function generateSummary(experience: string[]): Promise<string> {
     return '';
   }
 }
+export async function improveResume(content: string): Promise<string> {
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+
+  const formattedPrompt = `
+    You are a professional resume editor.
+    Improve the following resume content while keeping its meaning, tone, and structure.
+    Make it more concise, professional, and impactful:
+
+    "${content}"
+  `;
+
+  try {
+    const result = await model.generateContent(formattedPrompt);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error('Error improving resume:', error);
+    return content;
+  }
+}
