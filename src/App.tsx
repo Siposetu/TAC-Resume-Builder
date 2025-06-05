@@ -133,13 +133,12 @@ function App() {
               >
                 Export DOCX
               </button>
-              <button
-                onClick={exportToHtml}
-                className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
-                          </div> {/* end: flex gap-4 (export buttons) */}
-          </div> {/* end: flex flex-col (AI + export section) */}
-        </div> {/* end: left panel (form section) */}
-
+<button
+  onClick={exportToHtml}
+  className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+>
+  Export HTML
+</button>
         <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
           <SelectedTemplate data={resumeData} />
         </div> {/* end: right panel (preview) */}
