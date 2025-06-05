@@ -131,22 +131,15 @@ function App() {
                 onClick={exportToDocx}
                 className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
               >
-                Export DOCX
-              </button>
-<button
-  onClick={exportToHtml}
-  className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
->
-  Export HTML
-</button>
-        <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
-          <SelectedTemplate data={resumeData} />
-        </div> {/* end: right panel (preview) */}
-        
-      </div> {/* end: grid */}
-    </div> {/* end: container */}
-  </div> {/* end: screen */}
-);
+               Export DOCX
+  </button>
+  <button
+    onClick={exportToHtml}
+    className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+  >
+    Export HTML
+  </button>
+</div> {/* ✅ This is now properly placed */}
 
 
 export default App;
