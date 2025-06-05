@@ -134,3 +134,16 @@ function App() {
 }
 
 export default App;
+<button
+  onClick={async () => {
+    const prompt = `
+      Write a professional summary for a ${resumeData.fullName || 'UX Designer'} with experience in ${resumeData.skills.join(", ") || "Figma and usability testing"}.
+      Make it 3 sentences and suitable for a resume.
+    `;
+    const aiSummary = await generateResumeContent(prompt);
+    setResumeData(prev => ({ ...prev, summary: aiSummary }));
+  }}
+  className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+>
+  ✨ AI Generate Summary
+</button>
