@@ -10,7 +10,7 @@ export async function generateResumeContent(prompt: string): Promise<string> {
   const prompt = `As a professional resume writer, improve the following text while maintaining its core information. Make it more impactful and professional: ${content}`;
   
   try {
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent(formattedprompt);
     const response = await result.response;
     return response.text();
   } catch (error) {
