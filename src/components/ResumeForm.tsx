@@ -1,4 +1,5 @@
 import React from 'react';
+import { improveResume, generateSummary } from '../lib/gemini';
 
 interface ResumeFormProps {
   data: any;
@@ -38,6 +39,19 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
       ...data,
       skills: [...data.skills, '']
     });
+  };
+
+  const handleImproveDescription = async (index: number) => {
+    const improved = await improveResume(data.experience[index].description);
+    const newExp = [...data.experience];
+    newExp[index] = { ...newExp[index], description: improved };
+    onChange({ ...data, experience: newExp });
+  };
+
+  const handleGenerateSummary = async () => {
+    const experiences = data.experience.map((exp: any) => exp.description);
+    const summary = await generateSummary(experiences);
+    onChange({ ...data, summary });
   };
 
   return (
@@ -88,7 +102,16 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Professional Summary</label>
+        <div className="flex justify-between items-center mb-2">
+          <label className="block text-sm font-medium text-gray-700">Professional Summary</label>
+          <button
+            type="button"
+            onClick={handleGenerateSummary}
+            className="text-sm text-indigo-600 hover:text-indigo-500"
+          >
+            Generate with AI
+          </button>
+        </div>
         <textarea
           value={data.summary}
           onChange={(e) => onChange({ ...data, summary: e.target.value })}
@@ -134,16 +157,25 @@ const ResumeForm: React.FC<ResumeFormProps> = ({
               }}
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
-            <textarea
-              placeholder="Description"
-              value={exp.description}
-              onChange={(e) => {
-                const newExp = [...data.experience];
-                newExp[index] = { ...exp, description: e.target.value };
-                onChange({ ...data, experience: newExp });
-              }}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            />
+            <div className="relative">
+              <textarea
+                placeholder="Description"
+                value={exp.description}
+                onChange={(e) => {
+                  const newExp = [...data.experience];
+                  newExp[index] = { ...exp, description: e.target.value };
+                  onChange({ ...data, experience: newExp });
+                }}
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+              <button
+                type="button"
+                onClick={() => handleImproveDescription(index)}
+                className="absolute right-2 bottom-2 text-sm text-indigo-600 hover:text-indigo-500"
+              >
+                Improve with AI
+              </button>
+            </div>
           </div>
         ))}
         <button
