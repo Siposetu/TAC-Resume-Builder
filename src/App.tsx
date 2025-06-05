@@ -143,5 +143,14 @@ function App() {
   );
 }
 
+          <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
+            <SelectedTemplate data={resumeData} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default App;
 
