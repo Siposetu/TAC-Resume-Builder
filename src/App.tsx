@@ -95,9 +95,10 @@ function App() {
         <h1 className="text-3xl font-bold text-center mb-8">Resume Builder</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left Panel */}
           <div className="bg-white rounded-lg shadow p-6">
-            <ResumeForm 
-              data={resumeData} 
+            <ResumeForm
+              data={resumeData}
               onChange={setResumeData}
               onTemplateChange={setSelectedTemplate}
               selectedTemplate={selectedTemplate}
@@ -126,14 +127,12 @@ function App() {
                 >
                   Export PDF
                 </button>
-
                 <button
                   onClick={exportToDocx}
                   className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
                   Export DOCX
                 </button>
-
                 <button
                   onClick={exportToHtml}
                   className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
@@ -144,6 +143,7 @@ function App() {
             </div>
           </div>
 
+          {/* Right Panel: Resume Preview */}
           <div className="bg-white rounded-lg shadow p-6" ref={targetRef}>
             <SelectedTemplate data={resumeData} />
           </div>
