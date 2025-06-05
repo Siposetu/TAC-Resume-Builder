@@ -137,9 +137,9 @@ function App() {
     onClick={exportToHtml}
     className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
   >
-    Export HTML
+       Export HTML
   </button>
-</div> {/* ✅ This is now properly placed */}
+</div> {/* End of export buttons container */}
 
 
 export default App;
