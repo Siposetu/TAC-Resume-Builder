@@ -1,3 +1,4 @@
+import { generateResumeContent } from './lib/gemini'; // adjust path if needed
 import React, { useState } from 'react';
 import { usePDF } from 'react-to-pdf';
 import { Document, Packer, Paragraph } from 'docx';
